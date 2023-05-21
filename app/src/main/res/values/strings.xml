@@ -1,0 +1,20 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">NovelsTine</string>
+    <string name="intro">insert your name</string>
+    <string name="button">LINK START</string>
+    <string name="header">Weebs provides a wide range of stories and genres with its more than 70 different manga categories. Your own manga can be uploaded and shared as well.</string>
+    <string name="tentang_aplikasi">About Weebs</string>
+    <string name="copyright">titin yang buat
+    </string>
+    <string name="bagikan">Share</string>
+    <string name="bagikan_template">Saya Wibu</string>
+    <string name="belum_ada_data">Belum ada data</string>
+    <string name="histori">History</string>
+    <string name="data_x"> %s adalah pecinta novel</string>
+    <string name="hapus_histori">Hapus Histori</string>
+    <string name="konfirmasi_hapus">Hapus semua histori?</string>
+    <string name="hapus">Hapus</string>
+    <string name="batal">Batal</string>
+    <string name="switch_layout">Ubah tampilan</string>
+    <string name="tentang_menu">tentang apk</string>
+</resources>
