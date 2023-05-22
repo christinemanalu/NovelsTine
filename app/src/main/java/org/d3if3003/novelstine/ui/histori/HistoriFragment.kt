@@ -4,8 +4,11 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.d3if3003.novelstine.R
+import org.d3if3003.novelstine.databinding.FragmentHistoriBinding
 import org.d3if3003.novelstine.db.UserDb
 
 class HistoriFragment : Fragment() {

@@ -4,34 +4,42 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/introdFragment">
+    app:startDestination="@id/introdFragment"
+    tools:ignore="ExtraText">
 
     <fragment
         android:id="@+id/introdFragment"
         android:name="org.d3if3003.novelstine.introd.IntrodFragment"
-        android:label="IntrodFragment" >
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_introd" >
         <action
             android:id="@+id/action_introdFragment_to_listFragment"
-            app:destination="@id/listFragment" />
+            app:destination="@id/novelFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/listFragment"
-        android:name="org.d3if3003.novelstine.ui.histori.HistoriFragment"
-        android:label="ListFragment" >
-        <action
-            android:id="@+id/action_listFragment_to_aboutFragment"
-            app:destination="@id/aboutFragment" />
-        <action
-            android:id="@+id/action_listFragment_to_historiFragment"
-            app:destination="@id/historiFragment" />
-    </fragment>
+
     <fragment
         android:id="@+id/aboutFragment"
         android:name="org.d3if3003.novelstine.ui.histori.AboutFragment"
-        android:label="AboutFragment" />
+        android:label="About App"
+        tools:layout="@layout/fragment_about" />
+
     <fragment
         android:id="@+id/historiFragment"
         android:name="org.d3if3003.novelstine.ui.histori.HistoriFragment"
         android:label="@string/histori"
         tools:layout="@layout/fragment_histori" />
+
+    <fragment
+        android:id="@+id/novelFragment"
+        android:name="org.d3if3003.novelstine.ui.novel.NovelFragment"
+        android:label="List Novel"
+        tools:layout="@layout/fragment_novel">
+        <action
+            android:id="@+id/action_novelFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_novelFragment_to_historiFragment"
+            app:destination="@id/historiFragment" />
+    </fragment>
+
 </navigation>

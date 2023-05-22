@@ -1,4 +1,4 @@
-package org.d3if3003.novelstine.ui.histori
+package org.d3if3003.novelstine.ui.novel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import org.d3if3003.novelstine.R
 import org.d3if3003.novelstine.model.Novel
 
-class MainViewModel : ViewModel() {
+class NovelViewModel : ViewModel() {
 
     private val data = MutableLiveData<List<Novel>>()
     init {

@@ -1,12 +1,12 @@
-package org.d3if3003.novelstine.ui
+package org.d3if3003.novelstine.ui.novel
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import org.d3if3003.novelstine.db.User
+import org.d3if3003.novelstine.databinding.ListItemBinding
 import org.d3if3003.novelstine.model.Novel
 
-class MainAdapter : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
+class NovelAdapter : RecyclerView.Adapter<NovelAdapter.ViewHolder>() {
     class ViewHolder(
         private val binding: ListItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
@@ -15,7 +15,7 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
             author.text = novel.author
             genre.text = novel.genre
             tahun.text = novel.tahun.toString()
-            imageView.setImageResource(komik.imageResId)
+            imageView.setImageResource(novel.imageResId)
         }
     }
 

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import org.d3if3003.novelstine.R
+import org.d3if3003.novelstine.databinding.ItemHistoriBinding
 import org.d3if3003.novelstine.db.User
 import org.d3if3003.novelstine.model.getNama
 import java.text.SimpleDateFormat
