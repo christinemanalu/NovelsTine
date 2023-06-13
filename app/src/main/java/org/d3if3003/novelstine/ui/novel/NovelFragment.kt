@@ -1,6 +1,7 @@
 package org.d3if3003.novelstine.ui.novel
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment

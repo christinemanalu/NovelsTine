@@ -5,5 +5,5 @@ data class Novel(
     val author: String?,
     val genre: String?,
     val tahun: Int,
-    val imageResId: Int,
+    val imageId: String,
 )

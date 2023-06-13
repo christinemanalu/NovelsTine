@@ -1,8 +1,10 @@
 package org.d3if3003.novelstine.ui.novel
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import org.d3if3003.novelstine.R
 import org.d3if3003.novelstine.databinding.ListItemBinding
 import org.d3if3003.novelstine.model.Novel
 
@@ -15,7 +17,7 @@ class NovelAdapter : RecyclerView.Adapter<NovelAdapter.ViewHolder>() {
             author.text = novel.author
             genre.text = novel.genre
             tahun.text = novel.tahun.toString()
-            imageView.setImageResource(novel.imageResId)
+            imageView.setImageResource(R.drawable.mariposa)
         }
     }
 
