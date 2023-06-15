@@ -31,7 +31,6 @@
         app:layout_constraintStart_toEndOf="@id/imageView"
         tools:text="Dilan" />
 
-
     <TextView
         android:id="@+id/author"
         android:layout_width="wrap_content"

@@ -7,7 +7,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 
-private const val BASE_URL = "https://raw.githubusercontent.com/christinemanalu/NovelsTine/novelapi/"
+
+private const val BASE_URL = "https://raw.githubusercontent.com/" + "TaufiqAshariRamadhan/Assessment1MobPro/static-api/"
+
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -18,12 +20,20 @@ private val retrofit = Retrofit.Builder()
     .baseUrl(BASE_URL)
     .build()
 
-interface NovelsApiService {
+interface NovelApiService {
     @GET("static-api.json")
     suspend fun getNovel(): List<Novel>
 }
 
 object NovelApi {
-    val service: NovelsApiService by lazy {
-        retrofit.create(NovelsApiService::class.java) }
+
+    enum class ApiStatus { LOADING, SUCCESS, FAILED }
+
+    val service: NovelApiService by lazy {
+        retrofit.create(NovelApiService::class.java)
+    }
+
+    fun getNovelUrl(imageId: String): String {
+        return "$BASE_URL$imageId.png"
+    }
 }
