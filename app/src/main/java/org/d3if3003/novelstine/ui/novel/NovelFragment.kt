@@ -1,7 +1,17 @@
 package org.d3if3003.novelstine.ui.novel
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
+import androidx.annotation.RequiresApi
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -17,9 +27,12 @@ import org.d3if3003.novelstine.R
 import org.d3if3003.novelstine.data.SettingDataStore
 import org.d3if3003.novelstine.data.dataStore
 import org.d3if3003.novelstine.databinding.FragmentNovelBinding
+import org.d3if3003.novelstine.network.NovelApi
+import org.d3if3003.novelstine.ui.MainActivity
+import org.d3if3003.novelstine.ui.novel.NovelAdapter
+import org.d3if3003.novelstine.ui.novel.NovelViewModel
 
 class NovelFragment : Fragment() {
-    private val isLinearLayoutManager = true
     private val layoutDataStore: SettingDataStore by lazy {
         SettingDataStore(requireContext().dataStore)
     }
@@ -30,6 +43,7 @@ class NovelFragment : Fragment() {
     private lateinit var myAdapter: NovelAdapter
     private lateinit var binding: FragmentNovelBinding
     private var isLinearLayout = true
+
     companion object {
         const val EXTRA_MESSAGE = "com.example.myapp.MESSAGE"
     }
@@ -55,6 +69,11 @@ class NovelFragment : Fragment() {
         viewModel.getData().observe(viewLifecycleOwner) {
             myAdapter.updateData(it)
         }
+        viewModel.getStatus().observe(viewLifecycleOwner) {
+            updateProgress(it)
+        }
+        viewModel.scheduleUpdater(requireActivity().application)
+        //viewModel.scheduleUpdater(requireActivity().application)
         //val messageTextView = findViewById<TextView>(R.id.messageTextView)
         //val message = context.getStringExtra(EXTRA_MESSAGE)
         //messageTextView.text = message
@@ -67,6 +86,28 @@ class NovelFragment : Fragment() {
             isLinearLayout = it
             setLayout()
             activity?.invalidateOptionsMenu()
+        }
+
+    }
+
+    private fun updateProgress(status: NovelApi.ApiStatus) {
+        when (status) {
+            NovelApi.ApiStatus.LOADING -> {
+                binding.progressBar.visibility = View.VISIBLE
+            }
+
+            NovelApi.ApiStatus.SUCCESS -> {
+                binding.progressBar.visibility = View.GONE
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    requestNotificationPermission()
+                }
+            }
+
+            NovelApi.ApiStatus.FAILED -> {
+                binding.progressBar.visibility = View.GONE
+                binding.networkError.visibility = View.VISIBLE
+            }
         }
     }
 
@@ -85,13 +126,14 @@ class NovelFragment : Fragment() {
             }
             return true
         }
-        when(item.itemId) {
+        when (item.itemId) {
             R.id.menu_histori -> {
                 findNavController().navigate(
                     R.id.action_novelFragment_to_historiFragment
                 )
                 return true
             }
+
             R.id.menu_about -> {
                 findNavController().navigate(
                     R.id.action_novelFragment_to_aboutFragment
@@ -99,7 +141,8 @@ class NovelFragment : Fragment() {
                 return true
             }
         }
-        return super.onOptionsItemSelected(item) }
+        return super.onOptionsItemSelected(item)
+    }
 
     private fun setLayout() {
         (if (isLinearLayout)
@@ -114,5 +157,20 @@ class NovelFragment : Fragment() {
         else
             R.drawable.baseline_view_list_24
         menuItem.icon = ContextCompat.getDrawable(requireContext(), iconId)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    private fun requestNotificationPermission() {
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.POST_NOTIFICATIONS
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(Manifest.permission.POST_NOTIFICATIONS),
+                MainActivity.PERMISSION_REQUEST_CODE
+            )
+        }
     }
 }

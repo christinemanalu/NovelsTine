@@ -14,9 +14,9 @@ import org.d3if3003.novelstine.db.User
 import org.d3if3003.novelstine.db.UserDb
 
 class IntrodFragment : Fragment() {
-    companion object {
-        var NAMA = "nama"
-    }
+//    companion object {
+//        var NAMA = "nama"
+//    }
     private lateinit var binding: FragmentIntrodBinding
     private val viewModel: IntrodViewModel by lazy {
         val db = UserDb.getInstance(requireContext())
